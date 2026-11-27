@@ -18,6 +18,11 @@
   .meta span { font-size:13px; border:1px solid var(--line); border-radius:999px; padding:5px 12px; color:var(--muted); }
   .mock { padding:24px 0 56px; }
   .frame { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; }
+  .real { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .real figure { background:#0B0D12; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .real img { width:100%; display:block; }
+  .real figure:first-child { grid-column:1 / -1; }
+  .real figcaption { font-size:13px; color:var(--muted); padding:10px 14px; }
   .frame svg { width:100%; height:auto; display:block; border-radius:12px; }
   .note { color:var(--muted); font-size:13px; margin-top:12px; }
   section { padding:56px 0; border-top:1px solid var(--line); }
