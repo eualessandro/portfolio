@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autoprev | Alessandro Rodrigues</title>
+<style>
+  :root { --bg:#0B0D12; --card:#12151D; --line:#23283A; --txt:#E8ECF5; --muted:#8A94AD; --acc:#A3E635; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI", Arial, sans-serif; background:var(--bg); color:var(--txt); line-height:1.6; }
+  a { color:var(--acc); text-decoration:none; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
+  header { border-bottom:1px solid var(--line); }
+  header .wrap { display:flex; justify-content:space-between; align-items:center; height:64px; }
+  header a { color:var(--muted); font-size:15px; }
+  .hero { padding:88px 0 56px; background:radial-gradient(60% 70% at 85% 0%, #22C55E33, transparent 70%); }
+  .tag { color:var(--acc); letter-spacing:3px; font-size:13px; text-transform:uppercase; }
+  h1 { font-size:54px; margin:14px 0; }
+  .lead { color:var(--muted); font-size:20px; max-width:760px; }
+  .meta { margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; }
+  .meta span { font-size:13px; border:1px solid var(--line); border-radius:999px; padding:5px 12px; color:var(--muted); }
+  .mock { padding:24px 0 56px; }
+  .frame { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; }
+  .frame svg { width:100%; height:auto; display:block; border-radius:12px; }
+  .note { color:var(--muted); font-size:13px; margin-top:12px; }
+  section { padding:56px 0; border-top:1px solid var(--line); }
+  h2 { font-size:30px; margin-bottom:14px; }
+  .desc { color:var(--muted); font-size:17px; max-width:780px; }
+  ul { list-style:none; display:grid; gap:12px; margin-top:8px; }
+  li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 18px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .stack span { display:inline-block; font-size:13px; border:1px solid var(--line); border-radius:999px; padding:5px 12px; margin:0 8px 8px 0; color:var(--muted); }
+  .role { font-size:17px; }
+  footer { border-top:1px solid var(--line); padding:28px 0; color:var(--muted); font-size:14px; }
+  @media (max-width:800px) { h1 { font-size:38px; } .grid2 { grid-template-columns:1fr; } }
+</style></head>
+<body>
+<header><div class="wrap"><strong>Alessandro Rodrigues</strong><a href="../../">← Todos os projetos</a></div></header>
+<div class="hero"><div class="wrap">
+  <div class="tag">Previdência privada</div>
+  <h1>Autoprev</h1>
+  <p class="lead">Sistema de previdência privada com app mobile, API e painel administrativo.</p>
+  <div class="meta"><span>Papel: Design UX/UI e front-end; painel do cliente.</span></div>
+</div></div>
+<div class="mock"><div class="wrap">
+  <div class="frame"><svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A3E635"/><stop offset="1" stop-color="#22C55E"/></linearGradient></defs>
+<rect x="60" y="40" width="560" height="540" rx="30" fill="#0C160C" stroke="#264026" stroke-width="4"/>
+<rect x="90" y="70" width="500" height="480" rx="10" fill="#060E06"/>
+<text x="120" y="120" font-family="Segoe UI,Arial" font-size="20" fill="#9ACD8A">Meu plano</text>
+<circle cx="260" cy="260" r="110" fill="none" stroke="#1E301E" stroke-width="22"/>
+<circle cx="260" cy="260" r="110" fill="none" stroke="url(#g)" stroke-width="22" stroke-dasharray="520 700" transform="rotate(-90 260 260)"/>
+<text x="260" y="256" text-anchor="middle" font-family="Segoe UI,Arial" font-size="26" fill="#fff" font-weight="700">R$ 84 mil</text>
+<text x="260" y="284" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" fill="#9ACD8A">saldo acumulado</text>
+<rect x="400" y="220" width="170" height="80" rx="12" fill="#10200F"/>
+<text x="416" y="252" font-family="Segoe UI,Arial" font-size="13" fill="#9ACD8A">Aporte mensal</text>
+<text x="416" y="284" font-family="Segoe UI,Arial" font-size="20" fill="#fff" font-weight="700">R$ 650</text>
+<rect x="120" y="390" width="440" height="14" rx="7" fill="#1E301E"/>
+<rect x="120" y="420" width="330" height="14" rx="7" fill="#1E301E"/>
+<rect x="120" y="450" width="380" height="14" rx="7" fill="#1E301E"/>
+<rect x="640" y="130" width="330" height="440" rx="36" fill="#0C160C" stroke="#264026" stroke-width="4"/>
+<rect x="662" y="164" width="286" height="372" rx="18" fill="#060E06"/>
+<rect x="684" y="190" width="242" height="110" rx="14" fill="url(#g)"/>
+<text x="704" y="230" font-family="Segoe UI,Arial" font-size="15" fill="#03120A">Projeção de aposentadoria</text>
+<text x="704" y="266" font-family="Segoe UI,Arial" font-size="24" fill="#03120A" font-weight="700">2041 · R$ 3,2 mi</text>
+<rect x="684" y="320" width="242" height="54" rx="12" fill="#10200F"/>
+<rect x="684" y="390" width="242" height="54" rx="12" fill="#10200F"/>
+<rect x="684" y="460" width="242" height="54" rx="12" fill="#10200F"/>
+</svg></div>
+  <p class="note">Mockup ilustrativo, criado para apresentação do projeto. Não é captura de tela do produto.</p>
+</div></div>
+<section><div class="wrap grid2">
+  <div><h2>Sobre o projeto</h2><p class="desc">O Autoprev acompanha o plano de previdência do participante: saldo, aportes e projeção, com um painel administrativo para a gestão do plano.</p></div>
+  <div><h2>Destaques</h2><ul><li>App mobile para o participante</li><li>Visão de saldo e projeção</li><li>API para integração</li><li>Painel administrativo</li></ul></div>
+</div></section>
+<section><div class="wrap">
+  <h2>Tecnologias</h2>
+  <div class="stack"><span>React Native</span><span>Node.js</span><span>API REST</span><span>PostgreSQL</span></div>
+  <p class="role" style="margin-top:20px">Meu papel: Design UX/UI e front-end; painel do cliente.</p>
+</div></section>
+<footer><div class="wrap">Alessandro Rodrigues · Brasília-DF · alessandroz.br@gmail.com</div></footer>
+</body></html>
