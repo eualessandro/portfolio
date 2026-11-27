@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urban — Gestão de loteamentos e condomínios | Advances</title>
+  <meta name="description" content="Urban, da Advances: painel para gerenciar loteamentos, quadras, lotes, faturas e usuários, com API para integrações." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    :root {
+      --ink: #0b1f1d;
+      --ink-2: #134e4a;
+      --muted: #5b6f6d;
+      --line: #d7e6e4;
+      --paper: #ffffff;
+      --soft: #f3faf9;
+      --accent: #14b8a6;
+      --accent-d: #0f766e;
+      --radius: 16px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    .wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: #022c22; padding: .5rem 1rem; border-radius: 8px; }
+    .skip:focus { left: 1rem; top: 1rem; }
+
+    header.top { position: sticky; top: 0; z-index: 5; background: rgba(11,31,29,.95); backdrop-filter: blur(8px); color: #fff; }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .85rem; }
+    .brand { font-weight: 900; letter-spacing: .04em; text-decoration: none; display: flex; align-items: center; gap: .55rem; }
+    .brand-mark { width: 2rem; height: 2rem; border-radius: 9px; background: var(--accent); color: #022c22; display: grid; place-items: center; font-weight: 900; }
+    .brand small { font-weight: 600; letter-spacing: .02em; color: #94a3b8; }
+    .nav { display: none; gap: 1.5rem; }
+    .nav a { text-decoration: none; color: #b6d9d5; font-size: .95rem; }
+    .nav a:hover { color: #fff; }
+    @media (min-width: 800px) { .nav { display: flex; } }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .7rem 1.2rem; border-radius: 12px; font-weight: 700; text-decoration: none; background: var(--accent); color: #022c22; border: 1px solid transparent; transition: background .2s, transform .2s; }
+    .btn:hover { background: #2dd4bf; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+    .btn-ghost:hover { background: var(--soft); }
+    .top .btn-ghost, .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+    .top .btn-ghost:hover, .hero .btn-ghost:hover { background: rgba(255,255,255,.08); }
+    .btn[aria-disabled="true"] { background: #cbd5e1; color: #334155; cursor: not-allowed; transform: none; }
+
+    .hero { background: radial-gradient(50% 60% at 85% 0%, rgba(20,184,166,.22), transparent 70%), #0b1f1d; color: #fff; padding: clamp(3rem, 8vw, 6rem) 0; }
+    .hero .wrap { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.05fr .95fr; } }
+    .eyebrow { display: inline-block; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #5eead4; border: 1px solid rgba(94,234,212,.4); padding: .35rem .75rem; border-radius: 999px; }
+    h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.02em; margin: 1rem 0; }
+    .lead { color: #b6d9d5; font-size: clamp(1rem, 2vw, 1.12rem); max-width: 38rem; }
+    .cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
+    .shot { border-radius: var(--radius); overflow: hidden; background: var(--paper); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+    .shot figcaption { color: var(--muted); font-size: .85rem; padding: .7rem 1rem; background: var(--soft); border-top: 1px solid var(--line); }
+
+    section.block { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+    section.alt { background: var(--soft); border-block: 1px solid var(--line); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); letter-spacing: -.01em; margin-bottom: .6rem; }
+    .lead-s { color: var(--muted); max-width: 46rem; margin-bottom: 2rem; }
+    .eyebrow-s { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-d); }
+
+    .grid3 { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 800px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+    .grid2 { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 800px) { .grid2 { grid-template-columns: repeat(2, 1fr); } }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+    .card h3 { font-size: 1.05rem; margin-bottom: .35rem; }
+    .card p { color: var(--muted); font-size: .95rem; }
+    .card ul { list-style: none; display: grid; gap: .4rem; color: var(--ink-2); font-size: .95rem; margin-top: .5rem; }
+    .card li::before { content: "✓ "; color: var(--accent-d); font-weight: 800; }
+    .icon { width: 2.4rem; height: 2.4rem; border-radius: 10px; display: grid; place-items: center; background: #ccfbf1; color: var(--accent-d); font-weight: 900; margin-bottom: .9rem; }
+
+    .profiles { display: grid; gap: .75rem; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 800px) { .profiles { grid-template-columns: repeat(5, 1fr); } }
+    .profiles span { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: .75rem; text-align: center; font-weight: 700; color: var(--ink-2); font-size: .92rem; }
+
+    .plans { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 800px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    .plan { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; display: flex; flex-direction: column; gap: .6rem; }
+    .plan h3 { font-size: 1.15rem; }
+    .price { font-size: 1.75rem; font-weight: 900; }
+    .pending { display: inline-block; align-self: flex-start; font-size: .72rem; font-weight: 800; letter-spacing: .08em; color: #9a3412; background: #ffedd5; border: 1px dashed #fb923c; padding: .2rem .5rem; border-radius: 6px; }
+    .plan ul { list-style: none; display: grid; gap: .45rem; color: var(--ink-2); font-size: .95rem; margin-bottom: .5rem; }
+    .plan li::before { content: "✓ "; color: var(--accent-d); font-weight: 800; }
+    .plan .btn { margin-top: auto; }
+
+    .final { background: #0b1f1d; color: #fff; text-align: center; padding: clamp(3rem, 7vw, 5rem) 0; }
+    .final p { color: #b6d9d5; margin: .75rem auto 1.75rem; max-width: 36rem; }
+    footer { background: #051312; color: #94a3b8; padding: 1.5rem 0; font-size: .9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="Urban, início da página">
+        <span class="brand-mark" aria-hidden="true">U</span>
+        <span>URBAN <small>by Advances</small></span>
+      </a>
+      <nav class="nav" aria-label="Seções">
+        <a href="#recursos">Recursos</a>
+        <a href="#acesso">Perfis</a>
+        <a href="#integracao">Integração</a>
+        <a href="#planos">Planos</a>
+      </nav>
+      <a class="btn btn-ghost" href="https://urban.advances.com.br" target="_blank" rel="noopener noreferrer">Entrar no sistema</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="titulo">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Gestão de loteamentos e condomínios</span>
+          <h1 id="titulo">Loteamentos, quadras, lotes e faturas em um só painel.</h1>
+          <p class="lead">
+            O Urban organiza a estrutura do empreendimento, os contratos de venda e as faturas,
+            com painel para a administração e API para integrações. Desenvolvido pela Advances.
+          </p>
+          <div class="cta">
+            <a class="btn" href="#contato">Solicitar teste</a>
+            <a class="btn btn-ghost" href="#recursos">Ver recursos</a>
+          </div>
+        </div>
+        <figure class="shot">
+          <img src="assets/urban-login.png" width="1440" height="900" alt="Tela de acesso ao painel do Urban, com campos de e-mail e senha" />
+          <figcaption>Tela de acesso ao painel.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block" id="recursos" aria-labelledby="recursos-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Recursos</span>
+        <h2 id="recursos-titulo">O que o sistema faz</h2>
+        <p class="lead-s">Funções disponíveis hoje no painel e na API.</p>
+        <div class="grid3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">V</div>
+            <h3>Visão geral</h3>
+            <p>Indicadores calculados pela API no painel.</p>
+            <ul>
+              <li>Resumo de faturas e lotes</li>
+              <li>Faturas com situação atual</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">M</div>
+            <h3>Mapa de lotes</h3>
+            <p>Quadras e lotes do empreendimento.</p>
+            <ul>
+              <li>Filtros por quadra e status</li>
+              <li>Detalhes de cada lote</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">F</div>
+            <h3>Faturas e PIX</h3>
+            <p>Acompanhamento das cobranças.</p>
+            <ul>
+              <li>Listagem de faturas</li>
+              <li>Consulta e cópia do código PIX</li>
+              <li>Baixa manual de pagamento</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">L</div>
+            <h3>Loteamento e dados</h3>
+            <p>Cadastro da estrutura do empreendimento.</p>
+            <ul>
+              <li>Criar e editar loteamento</li>
+              <li>Adicionar quadras</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">R</div>
+            <h3>Avisos de cobrança</h3>
+            <p>Disparo manual dos avisos de vencimento.</p>
+            <ul>
+              <li>Aviso 3 dias antes do vencimento</li>
+              <li>Aviso no dia e após o vencimento</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">U</div>
+            <h3>Usuários</h3>
+            <p>Cadastro e controle de acesso.</p>
+            <ul>
+              <li>Criar, editar, ativar e desativar</li>
+              <li>Filtro por perfil</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt" id="acesso" aria-labelledby="acesso-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Perfis</span>
+        <h2 id="acesso-titulo">Perfis de usuário</h2>
+        <p class="lead-s">Cinco perfis para as equipes do empreendimento e para os moradores.</p>
+        <div class="profiles" role="list">
+          <span role="listitem">Administrador</span>
+          <span role="listitem">Gestor</span>
+          <span role="listitem">Financeiro</span>
+          <span role="listitem">Portaria</span>
+          <span role="listitem">Morador</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="integracao" aria-labelledby="integracao-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Integração</span>
+        <h2 id="integracao-titulo">API para outros sistemas</h2>
+        <p class="lead-s">Os recursos do painel também estão disponíveis pela API.</p>
+        <div class="grid2">
+          <article class="card">
+            <h3>Passe de visitante</h3>
+            <p>Passe com QR code, de uso único, criado pelo morador e validado pela portaria.</p>
+          </article>
+          <article class="card">
+            <h3>Histórico de notificações</h3>
+            <p>Consulta dos últimos envios de aviso registrados pela API.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt" id="planos" aria-labelledby="planos-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Planos</span>
+        <h2 id="planos-titulo">Assinatura</h2>
+        <p class="lead-s">Planos, preços e limites ainda não foram definidos. Os cartões abaixo são estrutura de exemplo.</p>
+        <div class="plans">
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Básico</h3>
+            <p class="price">R$ 0,00 <small>/mês</small></p>
+            <ul>
+              <li>Recurso 1 (a definir)</li>
+              <li>Recurso 2 (a definir)</li>
+            </ul>
+            <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Assinar (em breve)</a>
+          </article>
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Profissional</h3>
+            <p class="price">R$ 0,00 <small>/mês</small></p>
+            <ul>
+              <li>Recurso 1 (a definir)</li>
+              <li>Recurso 2 (a definir)</li>
+            </ul>
+            <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Assinar (em breve)</a>
+          </article>
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Empresarial</h3>
+            <p class="price">Sob consulta</p>
+            <ul>
+              <li>Recurso 1 (a definir)</li>
+              <li>Recurso 2 (a definir)</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contato">Falar com a equipe</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="contato" aria-labelledby="final-titulo">
+      <div class="wrap">
+        <h2 id="final-titulo">Quer testar o Urban no seu empreendimento?</h2>
+        <p>Solicite um teste e a equipe da Advances entra em contato. Canal de contato a definir.</p>
+        <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Solicitar teste (em breve)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Urban · Desenvolvido pela Advances</span>
+      <span>© 2026 Advances</span>
+    </div>
+  </footer>
+</body>
+</html>

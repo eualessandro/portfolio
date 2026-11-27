@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B0F1A"/><stop offset="1" stop-color="#162036"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#6366F1"/></linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.3" r="0.6"><stop offset="0" stop-color="#6366F1" stop-opacity="0.45"/><stop offset="1" stop-color="#6366F1" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <rect x="80" y="520" width="1040" height="2" fill="url(#acc)" opacity="0.6"/>
+  <g transform="translate(120,150)">
+    <rect x="0" y="0" width="300" height="520" rx="36" fill="#0E1424" stroke="#2A3550" stroke-width="3"/>
+    <rect x="22" y="60" width="256" height="90" rx="16" fill="url(#acc)" opacity="0.9"/>
+    <rect x="22" y="170" width="256" height="60" rx="14" fill="#1A2440"/>
+    <rect x="22" y="250" width="256" height="60" rx="14" fill="#1A2440"/>
+    <rect x="22" y="330" width="256" height="60" rx="14" fill="#1A2440"/>
+  </g>
+  <g transform="translate(480,190)">
+    <text x="0" y="0" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#22D3EE" letter-spacing="4">PREVIDÊNCIA PRIVADA</text>
+    <text x="0" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="88" font-weight="700" fill="#FFFFFF">Autoprev</text>
+    <text x="0" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="32" fill="#A5B4CF">App mobile, API e painel administrativo</text>
+    <text x="0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#6B7A99">Ilustração de apresentação, não é captura de tela</text>
+  </g>
+</svg>

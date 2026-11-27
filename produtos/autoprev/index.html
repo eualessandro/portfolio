@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autoprev — Previdência privada | Advances</title>
+  <meta name="description" content="Autoprev, da Advances: API e painel para gestão de previdência privada, com contribuições, benefícios, empréstimos e cobertura de risco." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    :root { --ink:#0f172a; --ink-2:#1e293b; --muted:#64748b; --line:#e2e8f0; --paper:#fff; --soft:#f8fafc;
+      --accent:#2563eb; --accent-d:#1d4ed8; --accent-soft:rgba(37,99,235,.22); --on:#fff; --radius:16px; --max:1120px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--paper); line-height:1.6; overflow-x:hidden; }
+    img { max-width:100%; height:auto; display:block; }
+    a { color:inherit; }
+    .wrap { width:min(100% - 2rem,var(--max)); margin-inline:auto; }
+    :focus-visible { outline:3px solid var(--accent); outline-offset:3px; border-radius:6px; }
+    .skip { position:absolute; left:-999px; top:0; background:var(--accent); color:var(--on); padding:.5rem 1rem; border-radius:8px; }
+    .skip:focus { left:1rem; top:1rem; }
+    header.top { position:sticky; top:0; z-index:5; background:rgba(15,23,42,.94); backdrop-filter:blur(8px); color:#fff; }
+    .top .wrap { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:.85rem; }
+    .brand { font-weight:900; letter-spacing:.04em; text-decoration:none; display:flex; align-items:center; gap:.55rem; }
+    .brand-mark { width:2rem; height:2rem; border-radius:9px; background:var(--accent); color:var(--on); display:grid; place-items:center; font-weight:900; }
+    .brand small { font-weight:600; letter-spacing:.02em; color:#94a3b8; }
+    .nav { display:none; gap:1.5rem; }
+    .nav a { text-decoration:none; color:#cbd5e1; font-size:.95rem; }
+    .nav a:hover { color:#fff; }
+    @media (min-width:800px) { .nav { display:flex; } }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:44px; padding:.7rem 1.2rem; border-radius:12px; font-weight:700; text-decoration:none; background:var(--accent); color:var(--on); border:1px solid transparent; transition:background .2s,transform .2s; }
+    .btn:hover { background:var(--accent-d); transform:translateY(-1px); }
+    .btn-ghost { background:transparent; color:var(--ink); border-color:var(--line); }
+    .btn-ghost:hover { background:var(--soft); }
+    .top .btn-ghost,.hero .btn-ghost { color:#fff; border-color:rgba(255,255,255,.28); }
+    .top .btn-ghost:hover,.hero .btn-ghost:hover { background:rgba(255,255,255,.08); }
+    .btn[aria-disabled="true"] { background:#cbd5e1; color:#334155; cursor:not-allowed; transform:none; }
+    .hero { background:radial-gradient(50% 60% at 85% 0%,var(--accent-soft),transparent 70%),var(--ink); color:#fff; padding:clamp(3rem,8vw,6rem) 0; }
+    .hero .wrap { display:grid; gap:2.5rem; align-items:center; }
+    @media (min-width:900px) { .hero .wrap { grid-template-columns:1.05fr .95fr; } }
+    .eyebrow { display:inline-block; font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.35rem .75rem; border-radius:999px; }
+    h1 { font-size:clamp(2.1rem,5vw,3.4rem); line-height:1.08; letter-spacing:-.02em; margin:1rem 0; }
+    .lead { color:#cbd5e1; font-size:clamp(1rem,2vw,1.12rem); max-width:38rem; }
+    .cta { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.6rem; }
+    .shot { border-radius:var(--radius); overflow:hidden; background:var(--paper); border:1px solid rgba(255,255,255,.1); box-shadow:0 40px 80px -30px rgba(0,0,0,.6); }
+    .shot figcaption { color:var(--muted); font-size:.85rem; padding:.7rem 1rem; background:var(--soft); border-top:1px solid var(--line); }
+    section.block { padding:clamp(2.5rem,6vw,4.5rem) 0; }
+    section.alt { background:var(--soft); border-block:1px solid var(--line); }
+    h2 { font-size:clamp(1.5rem,3.5vw,2.2rem); letter-spacing:-.01em; margin-bottom:.6rem; }
+    .lead-s { color:var(--muted); max-width:46rem; margin-bottom:2rem; }
+    .eyebrow-s { font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-d); }
+    .grid3 { display:grid; gap:1rem; grid-template-columns:1fr; }
+    @media (min-width:800px) { .grid3 { grid-template-columns:repeat(3,1fr); } }
+    .grid2 { display:grid; gap:1rem; grid-template-columns:1fr; }
+    @media (min-width:800px) { .grid2 { grid-template-columns:repeat(2,1fr); } }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.5rem; }
+    .card h3 { font-size:1.05rem; margin-bottom:.35rem; }
+    .card p { color:var(--muted); font-size:.95rem; }
+    .card ul { list-style:none; display:grid; gap:.4rem; color:var(--ink-2); font-size:.95rem; margin-top:.5rem; }
+    .card li::before { content:"✓ "; color:var(--accent-d); font-weight:800; }
+    .icon { width:2.4rem; height:2.4rem; border-radius:10px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-d); font-weight:900; margin-bottom:.9rem; }
+    .plans { display:grid; gap:1rem; grid-template-columns:1fr; }
+    @media (min-width:800px) { .plans { grid-template-columns:repeat(3,1fr); } }
+    .plan { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.75rem; display:flex; flex-direction:column; gap:.6rem; }
+    .plan h3 { font-size:1.15rem; }
+    .price { font-size:1.75rem; font-weight:900; }
+    .pending { display:inline-block; align-self:flex-start; font-size:.72rem; font-weight:800; letter-spacing:.08em; color:#9a3412; background:#ffedd5; border:1px dashed #fb923c; padding:.2rem .5rem; border-radius:6px; }
+    .plan ul { list-style:none; display:grid; gap:.45rem; color:var(--ink-2); font-size:.95rem; margin-bottom:.5rem; }
+    .plan li::before { content:"✓ "; color:var(--accent-d); font-weight:800; }
+    .plan .btn { margin-top:auto; }
+    .final { background:var(--ink); color:#fff; text-align:center; padding:clamp(3rem,7vw,5rem) 0; }
+    .final p { color:#cbd5e1; margin:.75rem auto 1.75rem; max-width:36rem; }
+    .draft { background:#7f1d1d; color:#fff; text-align:center; font-weight:800; padding:.7rem 1rem; font-size:.92rem; }
+    footer { background:#020617; color:#94a3b8; padding:1.5rem 0; font-size:.9rem; }
+    footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem; }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+
+  </style>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="Autoprev, início da página">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>AUTOPREV <small>by Advances</small></span>
+      </a>
+      <nav class="nav" aria-label="Seções">
+        <a href="#recursos">Recursos</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn-ghost" href="#contato">Falar com a equipe</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="titulo">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Previdência privada</span>
+          <h1 id="titulo">Gestão de previdência privada com área do participante e painel administrativo.</h1>
+          <p class="lead">O Autoprev reúne a API, o painel da entidade e o aplicativo do participante. Cobre contribuições, benefícios, empréstimos e cobertura de risco. Desenvolvido pela Advances.</p>
+          <div class="cta">
+            <a class="btn" href="#contato">Solicitar contato</a>
+            <a class="btn btn-ghost" href="#recursos">Ver recursos</a>
+          </div>
+        </div>
+        <figure class="shot">
+          <img src="assets/autoprev.svg" width="1200" height="800" alt="Ilustração do sistema Autoprev" />
+          <figcaption>Ilustração do produto.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block" id="recursos" aria-labelledby="recursos-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Recursos</span>
+        <h2 id="recursos-titulo">O que o sistema faz</h2>
+        <p class="lead-s">Funções implementadas na API e no painel administrativo.</p>
+        <div class="grid3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">P</div>
+            <h3>Área do participante</h3>
+            <p>Dados do participante e de seus dependentes.</p>
+            <ul><li>Resumo e cadastro</li><li>Dependentes e contas bancárias</li><li>Documentos legais e consentimentos</li></ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">C</div>
+            <h3>Contribuições</h3>
+            <p>Acompanhamento das contribuições.</p>
+            <ul><li>Extrato</li><li>Simulação de contribuição</li><li>Extrato em PDF</li></ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">B</div>
+            <h3>Benefícios</h3>
+            <p>Consulta e solicitação de benefícios.</p>
+            <ul><li>Simulação e extrato</li><li>Dados para imposto de renda</li><li>Solicitações com anexos</li></ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">E</div>
+            <h3>Empréstimos</h3>
+            <p>Simulação e contratação pelo participante.</p>
+            <ul><li>Simulação e pré-aprovado</li><li>Parcelas e boletos</li><li>Quitação e refinanciamento</li></ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">R</div>
+            <h3>Cobertura de risco</h3>
+            <p>Cotação e adesão a coberturas.</p>
+            <ul><li>Cotação</li><li>Adesão</li></ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">A</div>
+            <h3>Atendimento</h3>
+            <p>Canal de atendimento e avisos.</p>
+            <ul><li>Chamados</li><li>Notificações</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt" id="planos" aria-labelledby="planos-titulo">
+      <div class="wrap">
+        <span class="eyebrow-s">Planos</span>
+        <h2 id="planos-titulo">Assinatura</h2>
+        <p class="lead-s">Planos, preços e limites ainda não foram definidos. Os cartões abaixo são estrutura de exemplo.</p>
+        <div class="plans">
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Básico</h3>
+            <p class="price">R$ 0,00 /mês</p>
+            <ul><li>Recurso 1 (a definir)</li><li>Recurso 2 (a definir)</li></ul>
+            <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Assinar (em breve)</a>
+          </article>
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Profissional</h3>
+            <p class="price">R$ 0,00 /mês</p>
+            <ul><li>Recurso 1 (a definir)</li><li>Recurso 2 (a definir)</li></ul>
+            <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Assinar (em breve)</a>
+          </article>
+          <article class="plan">
+            <span class="pending">PENDENTE</span>
+            <h3>Plano Empresarial</h3>
+            <p class="price">Sob consulta</p>
+            <ul><li>Recurso 1 (a definir)</li><li>Recurso 2 (a definir)</li></ul>
+            <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Assinar (em breve)</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="contato" aria-labelledby="final-titulo">
+      <div class="wrap">
+        <h2 id="final-titulo">Quer conhecer o Autoprev?</h2>
+        <p>Canal de contato a definir.</p>
+        <a class="btn" href="#contato" aria-disabled="true" tabindex="-1">Solicitar contato (em breve)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Autoprev · Desenvolvido pela Advances</span>
+      <span>© 2026 Advances</span>
+    </div>
+  </footer>
+</body>
+</html>

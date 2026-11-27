@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A0A12"/><stop offset="1" stop-color="#1A1530"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#EC4899"/></linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.3" r="0.6"><stop offset="0" stop-color="#A78BFA" stop-opacity="0.4"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <rect x="80" y="520" width="1040" height="2" fill="url(#acc)" opacity="0.6"/>
+  <g transform="translate(120,150)">
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#2D2452" stroke-width="22"/>
+    <circle cx="150" cy="150" r="130" fill="none" stroke="url(#acc)" stroke-width="22" stroke-dasharray="560 820" transform="rotate(-90 150 150)"/>
+    <rect x="60" y="290" width="180" height="16" rx="8" fill="#2D2452"/>
+    <rect x="60" y="322" width="120" height="16" rx="8" fill="#2D2452"/>
+  </g>
+  <g transform="translate(480,190)">
+    <text x="0" y="0" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#A78BFA" letter-spacing="4">AUDITORIA LOCAL</text>
+    <text x="0" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="88" font-weight="700" fill="#FFFFFF">Auditare</text>
+    <text x="0" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="32" fill="#C4B5FD">Suíte de auditoria e limpeza do computador</text>
+    <text x="0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#7C71A6">Ilustração de apresentação, não é captura de tela</text>
+  </g>
+</svg>
